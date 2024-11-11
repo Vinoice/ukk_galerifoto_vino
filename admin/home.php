@@ -94,13 +94,11 @@ if ($_SESSION['status'] != 'login') {
                             $komentar = mysqli_query($koneksi, "SELECT * FROM komentarfoto WHERE fotoid='$fotoid'");
                             $jumlahKomentar = mysqli_num_rows($komentar);
                             ?>
-                            <!-- View Comments button to trigger the modal -->
                             <a href="#" data-bs-toggle="modal" data-bs-target="#commentModal<?php echo $fotoid; ?>"><i class="fa-regular fa-comment"></i></a> <?php echo $jumlahKomentar; ?> Komentar
                         </div>
                     </div>
                 </div>
 
-                <!-- Modal for viewing comments -->
                 <div class="modal fade" id="commentModal<?php echo $fotoid; ?>" tabindex="-1" aria-labelledby="commentModalLabel<?php echo $fotoid; ?>" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -117,7 +115,6 @@ if ($_SESSION['status'] != 'login') {
                                             <strong><?php echo $comment['namalengkap']; ?>:</strong>
                                             <p><?php echo $comment['isikomentar']; ?></p>
                                             <small>Posted on <?php echo $comment['tanggalkomentar']; ?></small>
-                                            <!-- Delete Comment Button -->
                                             <form action="../config/proses_hapus_komentar.php" method="post" class="d-inline">
                                                 <input type="hidden" name="komentarid" value="<?php echo $comment['komentarid']; ?>">
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus komentar ini?');">Hapus</button>
@@ -135,7 +132,7 @@ if ($_SESSION['status'] != 'login') {
                 </div>
             <?php } 
         } else {
-            // Display all photos if no album is selected (similar to previous code with modal integration for comments)
+
         } ?>
         </div>
     </div>

@@ -2,7 +2,6 @@
 session_start();
 include '../config/koneksi.php';
 
-// Pastikan user sudah login
 if ($_SESSION['status'] != 'login') {
     echo "<script> 
         alert('Anda belum login!');
@@ -10,7 +9,6 @@ if ($_SESSION['status'] != 'login') {
     </script>";
 }
 
-// Mendapatkan userid dari sesi
 $userid = $_SESSION['userid'];
 
 if (isset($_POST['edit'])) {
@@ -19,15 +17,12 @@ if (isset($_POST['edit'])) {
     $deskripsifoto = $_POST['deskripsifoto'];
     $albumid = $_POST['albumid'];
 
-    // Jika file baru diunggah, ganti foto lama
     if ($_FILES['lokasifile']['name'] != "") {
         $lokasifile = $_FILES['lokasifile']['name'];
         move_uploaded_file($_FILES['lokasifile']['tmp_name'], "../assets/img/" . $lokasifile);
 
-        // Update data foto beserta file baru
         $query = "UPDATE foto SET judulfoto='$judulfoto', deskripsifoto='$deskripsifoto', albumid='$albumid', lokasifile='$lokasifile' WHERE fotoid='$fotoid'";
     } else {
-        // Update data foto tanpa mengganti file
         $query = "UPDATE foto SET judulfoto='$judulfoto', deskripsifoto='$deskripsifoto', albumid='$albumid' WHERE fotoid='$fotoid'";
     }
 
@@ -41,7 +36,6 @@ if (isset($_POST['edit'])) {
 if (isset($_POST['hapus'])) {
     $fotoid = $_POST['fotoid'];
 
-    // Hapus data foto dari database
     $query = "DELETE FROM foto WHERE fotoid='$fotoid'";
     
     if (mysqli_query($koneksi, $query)) {
@@ -94,7 +88,6 @@ if (isset($_POST['hapus'])) {
                             <label class="form-label">Album</label>
                             <select class="form-control" name="albumid" required>
                                 <?php
-                                // Menampilkan album milik user yang sedang login
                                 $sql_album = mysqli_query($koneksi, "SELECT * FROM album WHERE userid='$userid'");
                                 while ($data_album = mysqli_fetch_array($sql_album)) { ?>
                                     <option value="<?php echo $data_album['albumid'] ?>">
@@ -128,7 +121,6 @@ if (isset($_POST['hapus'])) {
                             <tbody>
                                 <?php
                                 $no = 1;
-                                // Menampilkan data foto
                                 $sql = mysqli_query($koneksi, "SELECT * FROM foto");
                                 while ($data = mysqli_fetch_array($sql)) {
                                 ?>
@@ -140,7 +132,6 @@ if (isset($_POST['hapus'])) {
                                     <td><?php echo $data['tanggalunggah'] ?></td>
                                     <td>
                                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#edit<?php echo $data['fotoid'] ?>">EDIT</button>
-                                        <!-- Modal Edit -->
                                         <div class="modal fade" id="edit<?php echo $data['fotoid'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
@@ -184,7 +175,6 @@ if (isset($_POST['hapus'])) {
                                             </div>
                                         </div>
 
-                                        <!-- Modal Hapus -->
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapus<?php echo $data['fotoid'] ?>">HAPUS</button>
                                         <div class="modal fade" id="hapus<?php echo $data['fotoid'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">

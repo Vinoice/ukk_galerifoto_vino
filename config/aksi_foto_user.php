@@ -6,10 +6,10 @@ include 'koneksi.php';
 if (isset($_POST['tambah'])) {
     $judulfoto = $_POST['judulfoto'];
     $deskripsifoto = $_POST['deskripsifoto'];
-    $tanggalunggah = date('Y-m-d'); // Correct date format
+    $tanggalunggah = date('Y-m-d');
     $albumid = $_POST['albumid'];
     $userid = $_SESSION['userid'];
-    $foto = $_FILES['lokasifile']['name']; // Corrected file input name
+    $foto = $_FILES['lokasifile']['name'];
     $tmp = $_FILES['lokasifile']['tmp_name'];
     $lokasi = '../assets/img/';
     $namafoto = rand() . '-' . $foto;

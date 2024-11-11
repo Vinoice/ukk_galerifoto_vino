@@ -55,6 +55,7 @@ if ($_SESSION['status'] != 'login') {
           <a href="home.php" class="nav-link">Home</a>
           <a href="album.php" class="nav-link">Album</a>
           <a href="foto.php" class="nav-link">Foto</a>
+          <a href="user.php" class="nav-link">User</a>
         </div>
         <a href="../config/aksi_logout.php" class="btn btn-outline-dark m-1">Keluar</a>
       </div>
@@ -117,7 +118,7 @@ if ($_SESSION['status'] != 'login') {
                           <input type="hidden" name="fotoid" value="<?php echo $data['fotoid'] ?>">
                           <div class="input-group">
                             <input type="text" name="isikomentar" class="form-control" placeholder="Tambahkan komentar">
-                            <button type="submit" name="kirimkomentar" class="btn btn-outline-dark">Kirim</button>
+                            <button type="submit" name="kirimkomenta r" class="btn btn-outline-dark">Kirim</button>
                           </div>
                         </form>
                       </div>

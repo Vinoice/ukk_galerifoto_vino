@@ -94,7 +94,6 @@ if ($_SESSION['status'] != 'login') {
                             $komentar = mysqli_query($koneksi, "SELECT * FROM komentarfoto WHERE fotoid='$fotoid'");
                             $jumlahKomentar = mysqli_num_rows($komentar);
                             ?>
-                            <!-- View Comments button to trigger the modal -->
                             <a href="#" data-bs-toggle="modal" data-bs-target="#commentModal<?php echo $fotoid; ?>"><i class="fa-regular fa-comment"></i></a> <?php echo $jumlahKomentar; ?> Komentar
                         </div>
                     </div>
@@ -135,7 +134,6 @@ if ($_SESSION['status'] != 'login') {
                 </div>
             <?php } 
         } else {
-            // Display all photos if no album is selected (similar to previous code with modal integration for comments)
         } ?>
         </div>
     </div>

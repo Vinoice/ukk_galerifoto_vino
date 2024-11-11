@@ -34,7 +34,7 @@ include 'config/koneksi.php';
   <div class="container mt-4">
     <div class="row">
       <?php
-      // Query untuk mengambil foto beserta jumlah like dan komentar
+      
       $query = "
         SELECT 
           foto.*, 
@@ -59,11 +59,11 @@ include 'config/koneksi.php';
               <h5 class="card-title"><?php echo $data['judulfoto']; ?></h5>
               <p class="card-text"><?php echo $data['deskripsifoto']; ?></p>
               <p class="card-text">
-                <?php if (!isset($_SESSION['userid'])): // Cek jika pengguna belum login ?>
+                <?php if (!isset($_SESSION['userid'])):?>
                   <small class="text-muted">
                     <i class="fas fa-exclamation-circle"></i> Untuk melihat jumlah like dan komentar, silakan <a href="login.php">login</a> atau <a href="register.php">daftar</a> terlebih dahulu.
                   </small>
-                <?php else: // Jika sudah login ?>
+                <?php else: ?>
                   <small class="text-muted">
                     <i class="fas fa-thumbs-up"></i> <?php echo $data['jumlah_like']; ?> suka
                   </small><br>
@@ -76,7 +76,6 @@ include 'config/koneksi.php';
           </div>
         </div>
 
-        <!-- Modal untuk memperbesar gambar -->
         <div class="modal fade" id="imageModal<?php echo $data['fotoid']; ?>" tabindex="-1" aria-labelledby="imageModalLabel<?php echo $data['fotoid']; ?>" aria-hidden="true">
           <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -88,11 +87,11 @@ include 'config/koneksi.php';
                 <img src="assets/img/<?php echo $data['lokasifile']; ?>" class="img-fluid" alt="<?php echo $data['judulfoto']; ?>">
                 <p class="mt-3"><?php echo $data['deskripsifoto']; ?></p>
                 <p class="mt-3">
-                  <?php if (!isset($_SESSION['userid'])): // Cek jika pengguna belum login ?>
+                  <?php if (!isset($_SESSION['userid'])): ?>
                     <small class="text-muted">
                       <i class="fas fa-exclamation-circle"></i> Untuk melihat jumlah like dan komentar, silakan <a href="login.php">login</a> atau <a href="register.php">daftar</a> terlebih dahulu.
                     </small>
-                  <?php else: // Jika sudah login ?>
+                  <?php else: ?>
                     <small class="text-muted">
                       <i class="fas fa-thumbs-up"></i> <?php echo $data['jumlah_like']; ?> suka
                     </small><br>

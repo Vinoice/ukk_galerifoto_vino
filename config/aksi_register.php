@@ -8,7 +8,6 @@ $email = $_POST['email'];
 $namalengkap = $_POST['namalengkap'];
 $alamat = $_POST['alamat'];
 
-// Set role ke 'user' secara default
 $role = 'user'; 
 
 $sql = mysqli_query($koneksi, "INSERT INTO user (username, password, email, namalengkap, alamat, role) VALUES ('$username', '$password', '$email', '$namalengkap', '$alamat', '$role')");
